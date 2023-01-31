@@ -1,0 +1,43 @@
+<h1>New Consumption</h1>
+
+<%= form_with model: @consumption, local: true do |form| %>
+  <% if @consumption.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@consumption.errors.count, "error") %> prohibited this consumption from being saved:</h2>
+      <ul>
+        <% @consumption.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :entertainment %>
+    <%= form.collection_select :entertainment_id, Entertainment.all, :id, :title, { prompt: "Select an Entertainment" }, { class: 'form-control' } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :consumed_on %>
+    <%= form.date_field :consumed_on, { class: 'form-control' } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comment %>
+    <%= form.text_field :comment, { class: 'form-control' } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rating %>
+    <%= form.number_field :rating, { class: 'form-control' } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image, { class: 'form-control' } %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Create Consumption', { class: 'btn btn-primary' } %>
+  </div>
+<% end %>
