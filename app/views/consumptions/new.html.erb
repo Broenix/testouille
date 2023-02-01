@@ -1,4 +1,4 @@
-<h1>New Consumption</h1>
+<h1>Quoi de neuf ?</h1>
 
 <%= form_with model: @consumption, local: true do |form| %>
   <% if @consumption.errors.any? %>
@@ -15,6 +15,11 @@
   <div class="field">
     <%= form.label :entertainment %>
     <%= form.collection_select :entertainment_id, Entertainment.all, :id, :title, { prompt: "Select an Entertainment" }, { class: 'form-control' } %>
+  </div>
+
+    <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, { class: 'form-control' } %>
   </div>
 
   <div class="field">
