@@ -13,10 +13,10 @@
   <tbody>
     <% @consumptions.each do |consumption| %>
       <tr>
-        <td><%= consumption.consumed_on %></td>
-        <td><%= consumption.entertainment.name %></td>
-        <td><%= consumption.comment %></td>
-        <td><%= consumption.rating %></td>
+        <td><%= consumption.consumed_date %></td>
+        <td><%= consumption.entertainment.title %></td>
+        <td><%= consumption.commentary %></td>
+        <td><%= consumption.note %></td>
         <td><%= image_tag(consumption.image_url) if consumption.image_url.present? %></td>
       </tr>
     <% end %>

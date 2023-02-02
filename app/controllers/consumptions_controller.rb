@@ -17,10 +17,11 @@ class ConsumptionsController < ApplicationController
   end
 
   def create
-    @consumption = current_user.consumptions.build(consumption_params)
+    @consumption = Consumption.new(consumption_params)
 
     if @consumption.save
-      redirect_to @consumption, notice: 'Consumption was successfully created.'
+      flash[:notice] = 'Consumption was successfully created.'
+      redirect_to consumptions_path
     else
       render :new
     end
