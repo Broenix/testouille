@@ -1,24 +1,45 @@
-<h1>Liste des consommations</h1>
+using System.Collections.Generic;
 
-<table>
-  <thead>
-    <tr>
-      <th>Date de consommation</th>
-      <th>Nom de l'oeuvre</th>
-      <th>Commentaire</th>
-      <th>Note</th>
-      <th>Image</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @consumptions.each do |consumption| %>
-      <tr>
-        <td><%= consumption.consumed_date %></td>
-        <td><%= consumption.entertainment.title %></td>
-        <td><%= consumption.commentary %></td>
-        <td><%= consumption.note %></td>
-        <td><%= image_tag(consumption.image_url) if consumption.image_url.present? %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+namespace IMDbApiLib.Models
+{
+    public class SearchData
+    {
+        public SearchData()
+        {
+            ErrorMessage = string.Empty;
+            Results = new List<SearchResult>();
+        }
+
+        public SearchData(string errorMessage)
+        {
+            ErrorMessage = errorMessage;
+            Results = null;
+        }
+
+        public string SearchType { get; set; }
+        public string Expression { get; set; }
+        public List<SearchResult> Results { get; set; }
+        public string ErrorMessage { get; set; }
+    }
+
+    public class SearchResult
+    {
+        public string Id { get; set; }
+        public string ResultType { get; set; }
+        public string Image { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+    }
+
+    public enum SearchType
+    {
+        Title = 1,
+        Movie = 2,
+        Series = 4,
+        Name = 8,
+        Episode = 16,
+        Company = 32,
+        Keyword = 64,
+        All = 128
+    }
+}
